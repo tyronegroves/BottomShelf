@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{145C9C1A-CA25-46A8-93D4-1E2CE4EC146A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SimpleHost</RootNamespace>
+    <AssemblyName>SimpleHost</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HostedServiceManager.cs" />
+    <Compile Include="IHostedServiceLoader.cs" />
+    <Compile Include="IHostedServiceManager.cs" />
+    <Compile Include="IHostedServiceScanner.cs" />
+    <Compile Include="Monitoring\Events\DirectoryChangedEvent.cs" />
+    <Compile Include="Monitoring\Events\DirectoryCreatedEvent.cs" />
+    <Compile Include="Monitoring\Events\DirectoryDeletedEvent.cs" />
+    <Compile Include="Monitoring\Events\DirectoryRenamedEvent.cs" />
+    <Compile Include="Monitoring\Events\FileChangedEvent.cs" />
+    <Compile Include="Monitoring\Events\FileCreatedEvent.cs" />
+    <Compile Include="Monitoring\Events\FileDeletedEvent.cs" />
+    <Compile Include="Monitoring\Events\FileRenamedEvent.cs" />
+    <Compile Include="Monitoring\Events\FileSystemEvent.cs" />
+    <Compile Include="HostedServiceScanner.cs" />
+    <Compile Include="HostedService.cs" />
+    <Compile Include="HostedServiceLoader.cs" />
+    <Compile Include="Monitoring\QueuedFileSystemEventArgs.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Monitoring\QueueFileSystemWatcher.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleHost.Core\SimpleHost.Core.csproj">
+      <Project>{E3CB7E0C-1250-4E1C-99B8-7830FF852B1E}</Project>
+      <Name>SimpleHost.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
