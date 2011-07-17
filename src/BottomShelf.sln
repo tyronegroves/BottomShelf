@@ -5,7 +5,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BottomShelf.Host", "BottomS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BottomShelf", "BottomShelf\BottomShelf.csproj", "{54CB8617-1B87-444D-8DB9-3A3BACE4B7B0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A8339169-E9FF-43A5-B3E8-F6D36ED28077}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BottomShelf.Host.Specs", "Tests\BottomShelf.Host.Specs\BottomShelf.Host.Specs.csproj", "{C49171D0-364D-4475-BB51-B710C2D840F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{B6F302E7-9526-4703-8A0D-58D8C929EDA4}"
+	ProjectSection(SolutionItems) = preProject
+		Tests\Configuration\BottomShelf.vsmdi = Tests\Configuration\BottomShelf.vsmdi
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = BottomShelf.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -35,8 +47,22 @@ Global
 		{54CB8617-1B87-444D-8DB9-3A3BACE4B7B0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{54CB8617-1B87-444D-8DB9-3A3BACE4B7B0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{54CB8617-1B87-444D-8DB9-3A3BACE4B7B0}.Release|x86.ActiveCfg = Release|Any CPU
+		{C49171D0-364D-4475-BB51-B710C2D840F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C49171D0-364D-4475-BB51-B710C2D840F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C49171D0-364D-4475-BB51-B710C2D840F7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C49171D0-364D-4475-BB51-B710C2D840F7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C49171D0-364D-4475-BB51-B710C2D840F7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C49171D0-364D-4475-BB51-B710C2D840F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C49171D0-364D-4475-BB51-B710C2D840F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C49171D0-364D-4475-BB51-B710C2D840F7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C49171D0-364D-4475-BB51-B710C2D840F7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C49171D0-364D-4475-BB51-B710C2D840F7}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C49171D0-364D-4475-BB51-B710C2D840F7} = {A8339169-E9FF-43A5-B3E8-F6D36ED28077}
+		{B6F302E7-9526-4703-8A0D-58D8C929EDA4} = {A8339169-E9FF-43A5-B3E8-F6D36ED28077}
 	EndGlobalSection
 EndGlobal
