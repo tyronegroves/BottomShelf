@@ -159,19 +159,39 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("A directory two levels deep is deleted in the directory being monitored")]
+        public virtual void ADirectoryTwoLevelsDeepIsDeletedInTheDirectoryBeingMonitored()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A directory two levels deep is deleted in the directory being monitored", ((string[])(null)));
+#line 36
+this.ScenarioSetup(scenarioInfo);
+#line 37
+ testRunner.Given("the directory \'MyDirectory6\\Parent\\Deleted\' exists");
+#line 38
+ testRunner.And("I am monitoring the directory \'MyDirectory6\'");
+#line 39
+ testRunner.When("the directory \'MyDirectory6\\Parent\\Deleted\' is deleted");
+#line 40
+ testRunner.Then("the directory monitor should notify that the directory \'MyDirectory6\\Parent\\Delet" +
+                    "ed\' was deleted");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("A file is created in the directory being monitored")]
         public virtual void AFileIsCreatedInTheDirectoryBeingMonitored()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A file is created in the directory being monitored", ((string[])(null)));
-#line 36
+#line 42
 this.ScenarioSetup(scenarioInfo);
-#line 37
+#line 43
  testRunner.Given("the directory \'MyDirectory3\' exists");
-#line 38
+#line 44
  testRunner.And("I am monitoring the directory \'MyDirectory3\'");
-#line 39
+#line 45
  testRunner.When("the file \'MyDirectory3\\File1.txt\' is created");
-#line 40
+#line 46
  testRunner.Then("the directory monitor should notify that the file \'MyDirectory3\\File1.txt\' was cr" +
                     "eated");
 #line hidden
@@ -183,15 +203,15 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void AFileIsCreatedTwoLevelsDeepInTheDirectoryBeingMonitored()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A file is created two levels deep in the directory being monitored", ((string[])(null)));
-#line 42
+#line 48
 this.ScenarioSetup(scenarioInfo);
-#line 43
+#line 49
  testRunner.Given("the directory \'MyDirectory3\' exists");
-#line 44
+#line 50
  testRunner.And("I am monitoring the directory \'MyDirectory3\'");
-#line 45
+#line 51
  testRunner.When("the file \'MyDirectory3\\ParentDirectory\\File3.txt\' is created");
-#line 46
+#line 52
  testRunner.Then("the directory monitor should notify that the file \'MyDirectory3\\ParentDirectory\\F" +
                     "ile3.txt\' was created");
 #line hidden
@@ -203,15 +223,15 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void AFileIsDeletedFromTheDirectoryBeingMonitored()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A file is deleted from the directory being monitored", ((string[])(null)));
-#line 48
+#line 54
 this.ScenarioSetup(scenarioInfo);
-#line 49
+#line 55
  testRunner.Given("the file \'MyDirectory4\\File2.txt\' exists");
-#line 50
+#line 56
  testRunner.And("I am monitoring the directory \'MyDirectory4\'");
-#line 51
+#line 57
  testRunner.When("the file \'MyDirectory4\\File2.txt\' is deleted");
-#line 52
+#line 58
  testRunner.Then("the directory monitor should notify that the file \'MyDirectory4\\File2.txt\' was de" +
                     "leted");
 #line hidden
@@ -223,17 +243,79 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void AFileIsDeletedTwoLevelsDeepFromTheDirectoryBeingMonitored()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A file is deleted two levels deep from the directory being monitored", ((string[])(null)));
-#line 54
+#line 60
 this.ScenarioSetup(scenarioInfo);
-#line 55
+#line 61
  testRunner.Given("the file \'MyDirectory4\\ParentDirectory\\File2.txt\' exists");
-#line 56
+#line 62
  testRunner.And("I am monitoring the directory \'MyDirectory4\'");
-#line 57
+#line 63
  testRunner.When("the file \'MyDirectory4\\ParentDirectory\\File2.txt\' is deleted");
-#line 58
+#line 64
  testRunner.Then("the directory monitor should notify that the file \'MyDirectory4\\ParentDirectory\\F" +
                     "ile2.txt\' was deleted");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("A file is renamed in the directory being monitored")]
+        public virtual void AFileIsRenamedInTheDirectoryBeingMonitored()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A file is renamed in the directory being monitored", ((string[])(null)));
+#line 66
+this.ScenarioSetup(scenarioInfo);
+#line 67
+ testRunner.Given("the file \'MyDirectory7\\File2.txt\' exists");
+#line 68
+ testRunner.And("I am monitoring the directory \'MyDirectory7\'");
+#line 69
+ testRunner.When("the file \'MyDirectory7\\File2.txt\' is renamed to \'MyDirectory7\\File3.txt\'");
+#line 70
+ testRunner.Then("the directory monitor should notify that the file \'MyDirectory7\\File2.txt\' was re" +
+                    "named to \'MyDirectory7\\File3.txt\'");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("A file is renamed two levels deep in the directory being monitored")]
+        public virtual void AFileIsRenamedTwoLevelsDeepInTheDirectoryBeingMonitored()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A file is renamed two levels deep in the directory being monitored", ((string[])(null)));
+#line 72
+this.ScenarioSetup(scenarioInfo);
+#line 73
+ testRunner.Given("the file \'MyDirectory7\\Parent2\\File2.txt\' exists");
+#line 74
+ testRunner.And("I am monitoring the directory \'MyDirectory7\'");
+#line 75
+ testRunner.When("the file \'MyDirectory7\\Parent2\\File2.txt\' is renamed to \'MyDirectory7\\Parent2\\Fil" +
+                    "e3.txt\'");
+#line 76
+ testRunner.Then("the directory monitor should notify that the file \'MyDirectory7\\Parent2\\File2.txt" +
+                    "\' was renamed to \'MyDirectory7\\Parent2\\File3.txt\'");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("A file is changed in the directory being monitored")]
+        public virtual void AFileIsChangedInTheDirectoryBeingMonitored()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A file is changed in the directory being monitored", ((string[])(null)));
+#line 78
+this.ScenarioSetup(scenarioInfo);
+#line 79
+ testRunner.Given("the file \'MyDirectory8\\File7.txt\' exists");
+#line 80
+ testRunner.And("I am monitoring the directory \'MyDirectory8\'");
+#line 81
+ testRunner.When("the file \'MyDirectory8\\File7.txt\' size is increased to \'16\' bytes at a rate of \'1" +
+                    "6\' bytes every \'1\' milliseconds");
+#line 82
+ testRunner.Then("the directory monitor should notify that the file \'MyDirectory8\\File7.txt\' was ch" +
+                    "anged");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

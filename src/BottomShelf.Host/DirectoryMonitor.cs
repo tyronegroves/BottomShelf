@@ -7,6 +7,16 @@ namespace BottomShelf.Host
     {
         private FileSystemWatcher watcher;
 
+        public DirectoryMonitor()
+        {
+            DirectoryCreated += (sender, e) => { };
+            DirectoryRenamed += (sender, e) => { };
+            FileCreated += (sender, e) => { };
+            FileRenamed += (sender, e) => { };
+            FileChanged += (sender, e) => { };
+            ItemDeleted += (sender, e) => { };
+        }
+
         public void Start(string directory)
         {
             watcher = new FileSystemWatcher(directory) {IncludeSubdirectories = true};
@@ -18,7 +28,15 @@ namespace BottomShelf.Host
                                            DirectoryCreated(this, new DirectoryCreatedEventArgs(e.FullPath));
                                    };
 
-            watcher.Renamed += (sender, e) => DirectoryRenamed(this, new DirectoryRenamedEventArgs(e.OldFullPath, e.FullPath));
+            watcher.Renamed += (sender, e) =>
+                                   {
+                                       if(File.Exists(e.FullPath))
+                                           FileRenamed(this, new FileRenamedEventArgs(e.OldFullPath, e.FullPath));
+                                       else
+                                           DirectoryRenamed(this, new DirectoryRenamedEventArgs(e.OldFullPath, e.FullPath));
+                                   };
+
+            watcher.Changed += (sender, e) => FileChanged(this, new FileChangedEventArgs(e.FullPath));
             watcher.Deleted += (sender, e) => ItemDeleted(this, new ItemDeletedEventArgs(e.FullPath));
 
             watcher.EnableRaisingEvents = true;
@@ -33,6 +51,8 @@ namespace BottomShelf.Host
         public event EventHandler<DirectoryCreatedEventArgs> DirectoryCreated;
         public event EventHandler<DirectoryRenamedEventArgs> DirectoryRenamed;
         public event EventHandler<FileCreatedEventArgs> FileCreated;
+        public event EventHandler<FileRenamedEventArgs> FileRenamed;
+        public event EventHandler<FileChangedEventArgs> FileChanged;
         public event EventHandler<ItemDeletedEventArgs> ItemDeleted;
     }
 }

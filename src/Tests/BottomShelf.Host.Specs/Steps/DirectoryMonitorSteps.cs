@@ -15,6 +15,8 @@ namespace BottomShelf.Host.Specs.Steps
             directoryMonitor.DirectoryCreated += (sender, e) => ScenarioContext.Current.Set(e);
             directoryMonitor.DirectoryRenamed += (sender, e) => ScenarioContext.Current.Set(e);
             directoryMonitor.FileCreated += (sender, e) => ScenarioContext.Current.Set(e);
+            directoryMonitor.FileRenamed += (sender, e) => ScenarioContext.Current.Set(e);
+            directoryMonitor.FileChanged += (sender, e) => ScenarioContext.Current.Set(e);
             directoryMonitor.ItemDeleted += (sender, e) => ScenarioContext.Current.Set(e);
 
             ScenarioContext.Current.Set(directoryMonitor);
@@ -79,9 +81,9 @@ namespace BottomShelf.Host.Specs.Steps
             Thread.Sleep(10);
 
             var filePath = Path.Combine(FileSystemSteps.TestBaseDirectory, fileName);
-            var fileDeletedEventArgs = ScenarioContext.Current.Get<ItemDeletedEventArgs>();
+            var itemDeletedEventArgs = ScenarioContext.Current.Get<ItemDeletedEventArgs>();
 
-            Assert.AreEqual(filePath, fileDeletedEventArgs.Path);
+            Assert.AreEqual(filePath, itemDeletedEventArgs.Path);
         }
 
         [Then(@"the directory monitor should notify that the directory '(.*)' was deleted")]
@@ -89,11 +91,35 @@ namespace BottomShelf.Host.Specs.Steps
         {
             Thread.Sleep(10);
 
-             directory = FileSystemSteps.MakeTestDirectory(directory);
+            directory = FileSystemSteps.MakeTestDirectory(directory);
 
-            var fileDeletedEventArgs = ScenarioContext.Current.Get<ItemDeletedEventArgs>();
+            var itemDeletedEventArgs = ScenarioContext.Current.Get<ItemDeletedEventArgs>();
 
-            Assert.AreEqual(directory, fileDeletedEventArgs.Path);
+            Assert.AreEqual(directory, itemDeletedEventArgs.Path);
+        }
+
+        [Then(@"the directory monitor should notify that the file '(.*)' was renamed to '(.*)'")]
+        public void ThenTheDirectoryMonitorShouldNotifyThatTheFileWasRenamed(string originalFilePath, string newFilePath)
+        {
+            Thread.Sleep(10);
+
+            originalFilePath = FileSystemSteps.MakeTestDirectory(originalFilePath);
+            newFilePath = FileSystemSteps.MakeTestDirectory(newFilePath);
+
+            var fileRenamedEventArgs = ScenarioContext.Current.Get<FileRenamedEventArgs>();
+
+            Assert.AreEqual(originalFilePath, fileRenamedEventArgs.OriginalFilePath);
+            Assert.AreEqual(newFilePath, fileRenamedEventArgs.FilePath);
+        }
+
+        [Then(@"the directory monitor should notify that the file '(.*)' was changed")]
+        public void ThenTheDirectoryMonitorShouldNotifyThatTheFileWasChanged(string filePath)
+        {
+            filePath = FileSystemSteps.MakeTestDirectory(filePath);
+
+            var fileChangedEventArgs = ScenarioContext.Current.Get<FileChangedEventArgs>();
+
+            Assert.AreEqual(filePath, fileChangedEventArgs.Path);
         }
     }
 }

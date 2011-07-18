@@ -62,7 +62,9 @@
     <Compile Include="DirectoryCreatedEventArgs.cs" />
     <Compile Include="DirectoryMonitor.cs" />
     <Compile Include="DirectoryRenamedEventArgs.cs" />
+    <Compile Include="FileChangedEventArgs.cs" />
     <Compile Include="FileCreatedEventArgs.cs" />
+    <Compile Include="FileRenamedEventArgs.cs" />
     <Compile Include="ItemDeletedEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInstaller.cs">

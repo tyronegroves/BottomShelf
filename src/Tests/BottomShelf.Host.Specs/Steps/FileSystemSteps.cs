@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace BottomShelf.Host.Specs.Steps
@@ -78,6 +79,32 @@ namespace BottomShelf.Host.Specs.Steps
         {
             directory = MakeTestDirectory(directory);
             Directory.Delete(directory);
+        }
+
+        [When(@"the file '(.*)' is renamed to '(.*)'")]
+        public void WhenTheFileIsRenamed(string originalFilePath, string newFilePath)
+        {
+            originalFilePath = MakeTestDirectory(originalFilePath);
+            newFilePath = MakeTestDirectory(newFilePath);
+
+            File.Move(originalFilePath, newFilePath);
+        }
+
+        [When(@"the file '(.*)' size is increased to '(.*)' bytes at a rate of '(.*)' bytes every '(.*)' milliseconds")]
+        public void WhenTheFileSizeIsIncreasedToBytesAtARateOfEveryMilliseconds(string filePath, int totalSize, int increment, int interval)
+        {
+            filePath = MakeTestDirectory(filePath);
+            using(var stream = File.OpenWrite(filePath))
+            {
+                while(stream.Length < totalSize)
+                {
+                    Thread.Sleep(interval);
+
+                    var bytesToWrite = (stream.Length + increment) > totalSize ? totalSize - (int)stream.Length : increment;
+                    var bytes = new byte[bytesToWrite];
+                    stream.Write(bytes, 0, bytesToWrite);
+                }
+            }
         }
     }
 }
