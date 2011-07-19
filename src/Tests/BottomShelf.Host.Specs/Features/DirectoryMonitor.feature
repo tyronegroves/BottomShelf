@@ -78,5 +78,13 @@ Scenario: A file is renamed two levels deep in the directory being monitored
 Scenario: A file is changed in the directory being monitored
 	Given the file 'MyDirectory8\File7.txt' exists
 	And I am monitoring the directory 'MyDirectory8'
-	When the file 'MyDirectory8\File7.txt' size is increased to '16' bytes at a rate of '16' bytes every '1' milliseconds
+	When the file 'MyDirectory8\File7.txt' size is increased by '16' bytes
 	Then the directory monitor should notify that the file 'MyDirectory8\File7.txt' was changed
+
+Scenario: A file is changing slowly in the directory being monitored
+	Given the file 'MyDirectory8\File8.txt' exists
+	And I am monitoring the directory 'MyDirectory8'
+	When the file 'MyDirectory8\File8.txt' size is increased by '1024' bytes
+	And the is a pause for '100' milliseconds
+	And the file 'MyDirectory8\File8.txt' size is increased by '64' bytes
+	Then the directory monitor should notify that the file 'MyDirectory8\File8.txt' was changed

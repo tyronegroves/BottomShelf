@@ -1,4 +1,4 @@
-﻿namespace BottomShelf.Host
+﻿namespace BottomShelf.Host.Windows.Service
 {
     partial class ProjectInstaller
     {

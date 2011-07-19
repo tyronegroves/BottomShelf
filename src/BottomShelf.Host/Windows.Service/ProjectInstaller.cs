@@ -6,7 +6,7 @@ using System.Configuration.Install;
 using System.Reflection;
 using System.ServiceProcess;
 
-namespace BottomShelf.Host
+namespace BottomShelf.Host.Windows.Service
 {
     [RunInstaller(true)]
     public partial class ProjectInstaller : Installer

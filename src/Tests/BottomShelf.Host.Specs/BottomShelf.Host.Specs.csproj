@@ -67,6 +67,7 @@
     <Compile Include="Steps\FileSystemSteps.cs" />
     <Compile Include="Steps\LogManagerSteps.cs" />
     <Compile Include="Steps\LogSteps.cs" />
+    <Compile Include="Steps\TimeSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Features\DirectoryMonitor.feature">

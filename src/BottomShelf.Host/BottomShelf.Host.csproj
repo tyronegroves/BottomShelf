@@ -41,6 +41,9 @@
     <Reference Include="CommandLine">
       <HintPath>..\..\lib\CommandLine.dll</HintPath>
     </Reference>
+    <Reference Include="Stateless">
+      <HintPath>..\..\lib\Stateless.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
@@ -52,31 +55,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BottomShelfHost.cs" />
-    <Compile Include="BottomShelfService.cs">
+    <Compile Include="Windows.Service\BottomShelfService.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="BottomShelfService.Designer.cs">
+    <Compile Include="Windows.Service\BottomShelfService.Designer.cs">
       <DependentUpon>BottomShelfService.cs</DependentUpon>
     </Compile>
     <Compile Include="CommandLineOptions.cs" />
-    <Compile Include="DirectoryCreatedEventArgs.cs" />
-    <Compile Include="DirectoryMonitor.cs" />
-    <Compile Include="DirectoryRenamedEventArgs.cs" />
-    <Compile Include="FileChangedEventArgs.cs" />
-    <Compile Include="FileCreatedEventArgs.cs" />
-    <Compile Include="FileRenamedEventArgs.cs" />
-    <Compile Include="ItemDeletedEventArgs.cs" />
+    <Compile Include="Monitoring\DirectoryCreatedEventArgs.cs" />
+    <Compile Include="Monitoring\DirectoryMonitor.cs" />
+    <Compile Include="Monitoring\DirectoryRenamedEventArgs.cs" />
+    <Compile Include="Monitoring\FileChangedEventArgs.cs" />
+    <Compile Include="Monitoring\FileCreatedEventArgs.cs" />
+    <Compile Include="Monitoring\FileRenamedEventArgs.cs" />
+    <Compile Include="Monitoring\ItemDeletedEventArgs.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="ProjectInstaller.cs">
+    <Compile Include="Windows.Service\ProjectInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ProjectInstaller.Designer.cs">
+    <Compile Include="Windows.Service\ProjectInstaller.Designer.cs">
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ProjectInstaller.resx">
+    <EmbeddedResource Include="Windows.Service\ProjectInstaller.resx">
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

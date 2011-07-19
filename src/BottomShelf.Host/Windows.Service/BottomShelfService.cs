@@ -1,6 +1,6 @@
 ﻿using System.ServiceProcess;
 
-namespace BottomShelf.Host
+namespace BottomShelf.Host.Windows.Service
 {
     internal partial class BottomShelfService : ServiceBase
     {

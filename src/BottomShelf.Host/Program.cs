@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ServiceProcess;
+using BottomShelf.Host.Windows.Service;
 using CommandLine;
 
 namespace BottomShelf.Host
@@ -14,7 +15,7 @@ namespace BottomShelf.Host
             if(!parser.ParseArguments(arguments, options))
                 Environment.Exit(1);
 
-            InstallOrUninstallWindowsService(options);
+            InstallOrUninstallWindowsServiceIfNecessary(options);
 
             var bottomShelfHost = new BottomShelfHost();
 
@@ -30,7 +31,7 @@ namespace BottomShelf.Host
             ServiceBase.Run(new BottomShelfService(bottomShelfHost));
         }
 
-        private static void InstallOrUninstallWindowsService(CommandLineOptions options)
+        private static void InstallOrUninstallWindowsServiceIfNecessary(CommandLineOptions options)
         {
             if(!options.InstallAsWindowService && !options.UninstallWindowsService) return;
 

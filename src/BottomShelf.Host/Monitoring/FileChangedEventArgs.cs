@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BottomShelf.Host
+namespace BottomShelf.Host.Monitoring
 {
     public class FileChangedEventArgs : EventArgs
     {

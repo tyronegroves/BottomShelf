@@ -1,24 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
-namespace BottomShelf.Host
+namespace BottomShelf.Host.Monitoring
 {
     public class DirectoryMonitor
     {
         private FileSystemWatcher watcher;
-
-        public DirectoryMonitor()
-        {
-            DirectoryCreated += (sender, e) => { };
-            DirectoryRenamed += (sender, e) => { };
-            FileCreated += (sender, e) => { };
-            FileRenamed += (sender, e) => { };
-            FileChanged += (sender, e) => { };
-            ItemDeleted += (sender, e) => { };
-        }
+        private List<FileTracker> trackers;
 
         public void Start(string directory)
         {
+            trackers = new List<FileTracker>();
             watcher = new FileSystemWatcher(directory) {IncludeSubdirectories = true};
             watcher.Created += (sender, e) =>
                                    {
@@ -54,5 +47,9 @@ namespace BottomShelf.Host
         public event EventHandler<FileRenamedEventArgs> FileRenamed;
         public event EventHandler<FileChangedEventArgs> FileChanged;
         public event EventHandler<ItemDeletedEventArgs> ItemDeleted;
+    }
+
+    public class FileTracker
+    {
     }
 }

@@ -311,10 +311,33 @@ this.ScenarioSetup(scenarioInfo);
 #line 80
  testRunner.And("I am monitoring the directory \'MyDirectory8\'");
 #line 81
- testRunner.When("the file \'MyDirectory8\\File7.txt\' size is increased to \'16\' bytes at a rate of \'1" +
-                    "6\' bytes every \'1\' milliseconds");
+ testRunner.When("the file \'MyDirectory8\\File7.txt\' size is increased by \'16\' bytes");
 #line 82
  testRunner.Then("the directory monitor should notify that the file \'MyDirectory8\\File7.txt\' was ch" +
+                    "anged");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("A file is changing slowly in the directory being monitored")]
+        public virtual void AFileIsChangingSlowlyInTheDirectoryBeingMonitored()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A file is changing slowly in the directory being monitored", ((string[])(null)));
+#line 84
+this.ScenarioSetup(scenarioInfo);
+#line 85
+ testRunner.Given("the file \'MyDirectory8\\File8.txt\' exists");
+#line 86
+ testRunner.And("I am monitoring the directory \'MyDirectory8\'");
+#line 87
+ testRunner.When("the file \'MyDirectory8\\File8.txt\' size is increased by \'1024\' bytes");
+#line 88
+ testRunner.And("the is a pause for \'100\' milliseconds");
+#line 89
+ testRunner.And("the file \'MyDirectory8\\File8.txt\' size is increased by \'64\' bytes");
+#line 90
+ testRunner.Then("the directory monitor should notify that the file \'MyDirectory8\\File8.txt\' was ch" +
                     "anged");
 #line hidden
             testRunner.CollectScenarioErrors();

@@ -1,5 +1,5 @@
-﻿using System.IO;
-using System.Threading;
+﻿using System;
+using System.IO;
 using TechTalk.SpecFlow;
 
 namespace BottomShelf.Host.Specs.Steps
@@ -90,21 +90,17 @@ namespace BottomShelf.Host.Specs.Steps
             File.Move(originalFilePath, newFilePath);
         }
 
-        [When(@"the file '(.*)' size is increased to '(.*)' bytes at a rate of '(.*)' bytes every '(.*)' milliseconds")]
-        public void WhenTheFileSizeIsIncreasedToBytesAtARateOfEveryMilliseconds(string filePath, int totalSize, int increment, int interval)
+        [When(@"the file '(.*)' size is increased by '(.*)' bytes")]
+        public void WhenTheFileSizeIsIncreasedToBytesAtARateOfEveryMilliseconds(string filePath, int increment)
         {
             filePath = MakeTestDirectory(filePath);
-            using(var stream = File.OpenWrite(filePath))
-            {
-                while(stream.Length < totalSize)
-                {
-                    Thread.Sleep(interval);
 
-                    var bytesToWrite = (stream.Length + increment) > totalSize ? totalSize - (int)stream.Length : increment;
-                    var bytes = new byte[bytesToWrite];
-                    stream.Write(bytes, 0, bytesToWrite);
-                }
-            }
+            var bytes = new byte[increment];
+            var random = new Random();
+            
+            random.NextBytes(bytes);
+
+            File.WriteAllBytes(filePath, bytes);
         }
     }
 }

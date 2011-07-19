@@ -1,5 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading;
+using BottomShelf.Host.Monitoring;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -8,15 +11,23 @@ namespace BottomShelf.Host.Specs.Steps
     [Binding]
     public class DirectoryMonitorSteps
     {
+        public List<FileChangedEventArgs> FileChangedEvents
+        {
+            get { return ScenarioContext.Current.Get<List<FileChangedEventArgs>>("FileChangedEvents"); }
+            set { ScenarioContext.Current.Set(value, "FileChangedEvents"); }
+        }
+
         [BeforeScenario]
         public void SetupDirectoryMonitor()
         {
+            FileChangedEvents = new List<FileChangedEventArgs>();
+
             var directoryMonitor = new DirectoryMonitor();
             directoryMonitor.DirectoryCreated += (sender, e) => ScenarioContext.Current.Set(e);
             directoryMonitor.DirectoryRenamed += (sender, e) => ScenarioContext.Current.Set(e);
             directoryMonitor.FileCreated += (sender, e) => ScenarioContext.Current.Set(e);
             directoryMonitor.FileRenamed += (sender, e) => ScenarioContext.Current.Set(e);
-            directoryMonitor.FileChanged += (sender, e) => ScenarioContext.Current.Set(e);
+            directoryMonitor.FileChanged += (sender, e) => FileChangedEvents.Add(e);
             directoryMonitor.ItemDeleted += (sender, e) => ScenarioContext.Current.Set(e);
 
             ScenarioContext.Current.Set(directoryMonitor);
@@ -25,6 +36,7 @@ namespace BottomShelf.Host.Specs.Steps
         [AfterScenario]
         public void StopDirectoryMonitor()
         {
+            FileChangedEvents.Clear();
             var directoryMonitor = ScenarioContext.Current.Get<DirectoryMonitor>();
             directoryMonitor.Stop();
         }
@@ -117,9 +129,8 @@ namespace BottomShelf.Host.Specs.Steps
         {
             filePath = FileSystemSteps.MakeTestDirectory(filePath);
 
-            var fileChangedEventArgs = ScenarioContext.Current.Get<FileChangedEventArgs>();
-
-            Assert.AreEqual(filePath, fileChangedEventArgs.Path);
+            Assert.AreEqual(1, FileChangedEvents.Count);
+            Assert.AreEqual(filePath, FileChangedEvents[0].Path);
         }
     }
 }

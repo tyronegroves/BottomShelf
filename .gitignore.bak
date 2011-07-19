@@ -1,0 +1,20 @@
+*ReSharper*
+*resharper*
+*.suo
+*.cache
+obj
+bin
+*.csproj.user
+* Thumbs.db
+*.cache
+*.log
+*.user
+*.gpState
+<<<<<<< HEAD
+TestResults
+=======
+TestResults
+build
+src/SMS/WebRoot/Bin
+/SMS/WebRoot/Bin
+>>>>>>> 9d8c9def8c85f438973b56e1d2c669984b807c80
