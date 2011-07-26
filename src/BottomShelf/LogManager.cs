@@ -4,8 +4,7 @@ namespace BottomShelf
 {
     public static class LogManager
     {
-        private static readonly ConsoleLog DefaultLog = new ConsoleLog();
-        private static Func<Type, ILog> getLog = type => DefaultLog;
+        private static Func<Type, ILog> getLog = type => new ConsoleLog(type);
 
         public static Func<Type, ILog> GetLogFactoryMethod()
         {

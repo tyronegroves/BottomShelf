@@ -54,7 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyScanner.cs" />
     <Compile Include="BottomShelfHost.cs" />
+    <Compile Include="HostedService.cs" />
     <Compile Include="Monitoring\ChangedEventArgs.cs" />
     <Compile Include="Monitoring\CreatedEventArgs.cs" />
     <Compile Include="Monitoring\DeletedEventArgs.cs" />
@@ -67,7 +69,7 @@
     <Compile Include="Windows.Service\BottomShelfService.Designer.cs">
       <DependentUpon>BottomShelfService.cs</DependentUpon>
     </Compile>
-    <Compile Include="CommandLineOptions.cs" />
+    <Compile Include="CommandLineParameters.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Windows.Service\ProjectInstaller.cs">
       <SubType>Component</SubType>
@@ -84,6 +86,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BottomShelf\BottomShelf.csproj">
+      <Project>{54CB8617-1B87-444D-8DB9-3A3BACE4B7B0}</Project>
+      <Name>BottomShelf</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

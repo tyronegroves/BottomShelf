@@ -20,7 +20,7 @@ namespace BottomShelf.Host.Windows.Service
         public static ServiceStartMode StartType { get; set; }
         public static ServiceAccount Account { get; set; }
 
-        public static void Run(CommandLineOptions options)
+        public static void Run(CommandLineParameters options)
         {
             var installUtilArguments = new List<string>();
             installUtilArguments.Add(Assembly.GetExecutingAssembly().Location);

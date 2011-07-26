@@ -1,4 +1,6 @@
-﻿using System.ServiceProcess;
+﻿using System;
+using System.ServiceProcess;
+using CommandLine;
 
 namespace BottomShelf.Host.Windows.Service
 {
@@ -12,9 +14,14 @@ namespace BottomShelf.Host.Windows.Service
             InitializeComponent();
         }
 
-        protected override void OnStart(string[] args)
+        protected override void OnStart(string[] arguments)
         {
-            bottomShelfHost.Start(args);
+            var parser = new CommandLineParser(new CommandLineParserSettings());
+            var commandLineParameters = new CommandLineParameters();
+
+            parser.ParseArguments(arguments, commandLineParameters);
+
+            bottomShelfHost.Start(commandLineParameters);
         }
 
         protected override void OnStop()

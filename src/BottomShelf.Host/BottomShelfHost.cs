@@ -1,50 +1,27 @@
-﻿using System;
-using BottomShelf.Host.Monitoring;
+﻿using System.Collections.Generic;
+using System.IO;
 
 namespace BottomShelf.Host
 {
     public class BottomShelfHost
     {
-        private readonly int fileSystemPoll;
-        private FileSystemWatcher watcher;
+        private readonly ILog logger = LogManager.GetLog(typeof(BottomShelfHost));
+        private List<HostedService> hostedServices;
 
-        public BottomShelfHost(int fileSystemPoll)
+        public void Start(CommandLineParameters commandLineParameters)
         {
-            this.fileSystemPoll = fileSystemPoll;
-        }
+            logger.Info("Starting BottomShelf host");
 
-        public void Start(string[] arguments)
-        {
-            watcher = new FileSystemWatcher(@".\Services", fileSystemPoll);
-            watcher.Changed += watcher_Changed;
-            watcher.Created += watcher_Created;
-            watcher.Deleted += watcher_Deleted;
-            watcher.Renamed += watcher_Renamed;
-            watcher.Start();
-        }
-
-        private void watcher_Renamed(object sender, RenamedEventArgs e)
-        {
-            Console.WriteLine("Renamed '{0}' to '{1}'", e.OldPath, e.Path);
-        }
-
-        private void watcher_Deleted(object sender, DeletedEventArgs e)
-        {
-            Console.WriteLine("Deleted '{0}'", e.Path);
-        }
-
-        private void watcher_Created(object sender, CreatedEventArgs e)
-        {
-            Console.WriteLine("Created '{0}'", e.Path);
-        }
-
-        private void watcher_Changed(object sender, ChangedEventArgs e)
-        {
-            Console.WriteLine("Changed '{0}'", e.Path);
+            var servicesDirectory = Path.GetFullPath(commandLineParameters.ServicesDirectory);
+            hostedServices = new AssemblyScanner().Scan(servicesDirectory);
+            hostedServices.ForEach(hs => hs.Start());
         }
 
         public void Stop()
         {
+            logger.Info("Stopping BottomShelf host");
+
+            hostedServices.ForEach(hs => hs.Stop());
         }
     }
 }

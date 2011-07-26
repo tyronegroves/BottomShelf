@@ -10,20 +10,18 @@ namespace BottomShelf.Host
         private static void Main(string[] arguments)
         {
             var parser = new CommandLineParser(new CommandLineParserSettings(Console.Error));
-            var options = new CommandLineOptions();
+            var commandLineParameters = new CommandLineParameters();
 
-            if(!parser.ParseArguments(arguments, options))
+            if(!parser.ParseArguments(arguments, commandLineParameters))
                 Environment.Exit(1);
 
-            InstallOrUninstallWindowsServiceIfNecessary(options);
+            InstallOrUninstallWindowsServiceIfNecessary(commandLineParameters);
 
-            AppDomain.CurrentDomain.UnhandledException += UnhandledException;
-
-            var bottomShelfHost = new BottomShelfHost(options.FileSystemPoll);
+            var bottomShelfHost = new BottomShelfHost();
 
             if(Environment.UserInteractive)
             {
-                bottomShelfHost.Start(arguments);
+                bottomShelfHost.Start(commandLineParameters);
                 WaitUntilUserWantsToExit();
                 bottomShelfHost.Stop();
 
@@ -33,17 +31,13 @@ namespace BottomShelf.Host
             ServiceBase.Run(new BottomShelfService(bottomShelfHost));
         }
 
-        private static void UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        private static void InstallOrUninstallWindowsServiceIfNecessary(CommandLineParameters commandLineParameters)
         {
-        }
-
-        private static void InstallOrUninstallWindowsServiceIfNecessary(CommandLineOptions options)
-        {
-            if(!options.InstallAsWindowService && !options.UninstallWindowsService) return;
+            if(!commandLineParameters.InstallAsWindowService && !commandLineParameters.UninstallWindowsService) return;
 
             try
             {
-                ProjectInstaller.Run(options);
+                ProjectInstaller.Run(commandLineParameters);
                 Environment.Exit(0);
             }
             catch
