@@ -17,7 +17,9 @@ namespace BottomShelf.Host
 
             InstallOrUninstallWindowsServiceIfNecessary(options);
 
-            var bottomShelfHost = new BottomShelfHost();
+            AppDomain.CurrentDomain.UnhandledException += UnhandledException;
+
+            var bottomShelfHost = new BottomShelfHost(options.FileSystemPoll);
 
             if(Environment.UserInteractive)
             {
@@ -29,6 +31,10 @@ namespace BottomShelf.Host
             }
 
             ServiceBase.Run(new BottomShelfService(bottomShelfHost));
+        }
+
+        private static void UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
         }
 
         private static void InstallOrUninstallWindowsServiceIfNecessary(CommandLineOptions options)

@@ -55,6 +55,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BottomShelfHost.cs" />
+    <Compile Include="Monitoring\ChangedEventArgs.cs" />
+    <Compile Include="Monitoring\CreatedEventArgs.cs" />
+    <Compile Include="Monitoring\DeletedEventArgs.cs" />
+    <Compile Include="Monitoring\FileSystemWatcher.cs" />
+    <Compile Include="Monitoring\MonitoredDirectory.cs" />
+    <Compile Include="Monitoring\RenamedEventArgs.cs" />
     <Compile Include="Windows.Service\BottomShelfService.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -62,13 +68,6 @@
       <DependentUpon>BottomShelfService.cs</DependentUpon>
     </Compile>
     <Compile Include="CommandLineOptions.cs" />
-    <Compile Include="Monitoring\DirectoryCreatedEventArgs.cs" />
-    <Compile Include="Monitoring\DirectoryMonitor.cs" />
-    <Compile Include="Monitoring\DirectoryRenamedEventArgs.cs" />
-    <Compile Include="Monitoring\FileChangedEventArgs.cs" />
-    <Compile Include="Monitoring\FileCreatedEventArgs.cs" />
-    <Compile Include="Monitoring\FileRenamedEventArgs.cs" />
-    <Compile Include="Monitoring\ItemDeletedEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Windows.Service\ProjectInstaller.cs">
       <SubType>Component</SubType>

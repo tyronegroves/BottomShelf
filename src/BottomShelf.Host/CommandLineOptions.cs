@@ -22,6 +22,9 @@ namespace BottomShelf.Host
         [Option(null, "serviceAccount", HelpText = "Set the user account the windows service will run as. Options: LocalService, NetworkService, LocalSystem, User.  The default is 'LocalSystem'")]
         public string ServiceAccount = "LocalSystem";
 
+        [Option(null, "fileSystemPoll", HelpText = "Interval time for service to check if the file is unlocked in milliseconds. Default is 1000 ms.")]
+        public int FileSystemPoll = 1000;
+
         [HelpOption(null, "help")]
         public string GetUsage()
         {

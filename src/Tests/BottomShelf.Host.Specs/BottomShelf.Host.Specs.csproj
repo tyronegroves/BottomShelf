@@ -50,11 +50,6 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Features\DirectoryMonitor.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DirectoryMonitor.feature</DependentUpon>
-    </Compile>
     <Compile Include="Features\LogManager.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -63,17 +58,12 @@
     <Compile Include="Mocks\ClassA.cs" />
     <Compile Include="Mocks\TestLogA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Steps\DirectoryMonitorSteps.cs" />
     <Compile Include="Steps\FileSystemSteps.cs" />
     <Compile Include="Steps\LogManagerSteps.cs" />
     <Compile Include="Steps\LogSteps.cs" />
     <Compile Include="Steps\TimeSteps.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Features\DirectoryMonitor.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DirectoryMonitor.feature.cs</LastGenOutput>
-    </None>
     <None Include="Features\LogManager.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>LogManager.feature.cs</LastGenOutput>
