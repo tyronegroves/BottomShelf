@@ -1,5 +1,4 @@
-﻿using System;
-using System.ServiceProcess;
+﻿using System.ServiceProcess;
 using CommandLine;
 
 namespace BottomShelf.Host.Windows.Service

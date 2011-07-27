@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{54CB8617-1B87-444D-8DB9-3A3BACE4B7B0}</ProjectGuid>
+    <ProjectGuid>{7B2B07EA-3899-41C5-9997-273E47EE819F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BottomShelf</RootNamespace>
-    <AssemblyName>BottomShelf</AssemblyName>
+    <RootNamespace>BottomShelf.HelloWorld</RootNamespace>
+    <AssemblyName>BottomShelf.HelloWorld</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\BottomShelf.Host\bin\Debug\Services\HelloWorld\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -32,15 +32,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HostedServiceBase.cs" />
-    <Compile Include="ConsoleLog.cs" />
-    <Compile Include="ILog.cs" />
-    <Compile Include="LogManager.cs" />
+    <Compile Include="HelloWorldService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BottomShelf\BottomShelf.csproj">
+      <Project>{54CB8617-1B87-444D-8DB9-3A3BACE4B7B0}</Project>
+      <Name>BottomShelf</Name>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

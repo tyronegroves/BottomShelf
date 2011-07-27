@@ -10,18 +10,18 @@ namespace BottomShelf.Host
         private static void Main(string[] arguments)
         {
             var parser = new CommandLineParser(new CommandLineParserSettings(Console.Error));
-            var commandLineParameters = new CommandLineParameters();
+            var parameters = new CommandLineParameters();
 
-            if(!parser.ParseArguments(arguments, commandLineParameters))
+            if(!parser.ParseArguments(arguments, parameters))
                 Environment.Exit(1);
 
-            InstallOrUninstallWindowsServiceIfNecessary(commandLineParameters);
+            InstallOrUninstallWindowsServiceIfNecessary(parameters);
 
             var bottomShelfHost = new BottomShelfHost();
 
             if(Environment.UserInteractive)
             {
-                bottomShelfHost.Start(commandLineParameters);
+                bottomShelfHost.Start(parameters);
                 WaitUntilUserWantsToExit();
                 bottomShelfHost.Stop();
 
@@ -31,13 +31,13 @@ namespace BottomShelf.Host
             ServiceBase.Run(new BottomShelfService(bottomShelfHost));
         }
 
-        private static void InstallOrUninstallWindowsServiceIfNecessary(CommandLineParameters commandLineParameters)
+        private static void InstallOrUninstallWindowsServiceIfNecessary(CommandLineParameters parameters)
         {
-            if(!commandLineParameters.InstallAsWindowService && !commandLineParameters.UninstallWindowsService) return;
+            if(!parameters.InstallAsWindowService && !parameters.UninstallWindowsService) return;
 
             try
             {
-                ProjectInstaller.Run(commandLineParameters);
+                ProjectInstaller.Run(parameters);
                 Environment.Exit(0);
             }
             catch

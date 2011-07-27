@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configurat
 		Tests\Configuration\BottomShelf.vsmdi = Tests\Configuration\BottomShelf.vsmdi
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BottomShelf.HelloWorld", "BottomShelf.HelloWorld\BottomShelf.HelloWorld.csproj", "{7B2B07EA-3899-41C5-9997-273E47EE819F}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = BottomShelf.vsmdi
@@ -58,6 +60,16 @@ Global
 		{C49171D0-364D-4475-BB51-B710C2D840F7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{C49171D0-364D-4475-BB51-B710C2D840F7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C49171D0-364D-4475-BB51-B710C2D840F7}.Release|x86.ActiveCfg = Release|Any CPU
+		{7B2B07EA-3899-41C5-9997-273E47EE819F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B2B07EA-3899-41C5-9997-273E47EE819F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B2B07EA-3899-41C5-9997-273E47EE819F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7B2B07EA-3899-41C5-9997-273E47EE819F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7B2B07EA-3899-41C5-9997-273E47EE819F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7B2B07EA-3899-41C5-9997-273E47EE819F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B2B07EA-3899-41C5-9997-273E47EE819F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B2B07EA-3899-41C5-9997-273E47EE819F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7B2B07EA-3899-41C5-9997-273E47EE819F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7B2B07EA-3899-41C5-9997-273E47EE819F}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
