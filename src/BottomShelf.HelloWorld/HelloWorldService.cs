@@ -1,21 +1,22 @@
-﻿using System;
-using System.Threading;
-
-namespace BottomShelf.HelloWorld
+﻿namespace BottomShelf.HelloWorld
 {
     public class HelloWorldService : HostedServiceBase
     {
+        public CronTriggerExample CronTriggerExample { get; set; }
+
         public HelloWorldService()
         {
-            throw new NotImplementedException();    
+            CronTriggerExample = new CronTriggerExample();
         }
 
         public override void Start()
         {
+            CronTriggerExample.Run();
         }
 
         public override void Stop()
         {
+            CronTriggerExample.End();
         }
     }
 }

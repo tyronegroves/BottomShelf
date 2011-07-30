@@ -38,8 +38,17 @@
     <StartupObject>BottomShelf.Host.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="C5">
+      <HintPath>..\..\lib\C5.dll</HintPath>
+    </Reference>
     <Reference Include="CommandLine">
       <HintPath>..\..\lib\CommandLine.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging">
+      <HintPath>..\..\lib\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz">
+      <HintPath>..\..\lib\Quartz.dll</HintPath>
     </Reference>
     <Reference Include="Stateless">
       <HintPath>..\..\lib\Stateless.dll</HintPath>
